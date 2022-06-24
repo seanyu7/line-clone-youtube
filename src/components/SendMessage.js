@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { useState } from "react";
 import { db,auth } from "../firebase";
 import firebase from "firebase/compat/app";
 
@@ -8,14 +8,15 @@ function SendMessage() {
   function sendMessage(e) {
     e.preventDefault();
 
-    const {uid,photoURl} = auth.currentUser;
+    const {uid,photoURL} = auth.currentUser;
 
 db.collection("messages").add({
     text: message,
-    photoURl,
+    photoURL,
     uid,
     createAt: firebase.firestore.FieldValue.serverTimestamp(),
 });
+setMessage("");
   }
 
   return (
@@ -26,6 +27,7 @@ db.collection("messages").add({
             placeholder="Please put in your message"
             type="text"
             onChange={(e) => setMessage(e.target.value)}
+            value={message}
           />
         </div>
       </form>

@@ -5,7 +5,7 @@ import {auth} from "../firebase"
 function SignOut() {
   return (
     <div>
-        <Button onclick={() => auth.signOut()}>SignOut</Button>
+        <Button onClick={() => auth.signOut()}>SignOut</Button>
     </div>
   )
 }
